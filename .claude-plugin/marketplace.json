@@ -1,0 +1,13 @@
+{
+  "name": "goat-slam-words",
+  "owner": {
+    "name": "GOAT Academy"
+  },
+  "plugins": [
+    {
+      "name": "goat-slam-words",
+      "source": "./",
+      "description": "Slam Words · Том үг: giant kinetic-type look for Reels/TikTok. Mongolian-first."
+    }
+  ]
+}
