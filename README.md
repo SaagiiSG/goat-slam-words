@@ -35,9 +35,14 @@ Claude өөрөө суулгана. Дараа нь `/reload-plugins` гэж б�
 /plugin install goat-slam-words@goat-slam-words
 ```
 
+**Zip файлаар авсан бол:**
+1. `goat-slam-words.zip`-ийг задална. Задалсан `goat-slam-words` хавтсаа устгалгүй үлдээгээрэй.
+2. Claude Code-д "Энэ хавтсан дахь plugin-ийг суулгаад өг:" гэж бичээд задалсан `goat-slam-words` хавтсаа чирж оруулна.
+3. `/reload-plugins` гэж бичнэ.
+
 **Шинэ хувилбар гарвал:** Claude-д "goat-slam-words plugin-ийг шинэчил" гэж хэлэхэд болно.
 
-> **For Claude Code:** to install this plugin, run `claude plugin marketplace add SaagiiSG/goat-slam-words` and then `claude plugin install goat-slam-words@goat-slam-words`, then tell the user to type `/reload-plugins`. To update it: `claude plugin marketplace update goat-slam-words` and then `claude plugin update goat-slam-words@goat-slam-words`.
+> **For Claude Code:** to install this plugin, run `claude plugin marketplace add SaagiiSG/goat-slam-words` (or, from an unzipped copy, `claude plugin marketplace add <path to the goat-slam-words folder>`) and then `claude plugin install goat-slam-words@goat-slam-words`, then tell the user to type `/reload-plugins`. To update it: `claude plugin marketplace update goat-slam-words` and then `claude plugin update goat-slam-words@goat-slam-words`.
 
 ---
 
