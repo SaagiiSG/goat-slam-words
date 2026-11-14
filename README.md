@@ -1,5 +1,7 @@
 # 🐐 Slam Words · Том үг
 
+<p align="center"><img src="assets/poster.jpg" width="300" alt="Slam Words · Том үг"></p>
+
 **Claude Code дотор ажилладаг видео эдитийн skill.** Таны ярьж байгаа гол үгс дэлгэц дүүрэн том үсгээр ярианы тань хэмнэлээр гарч ирнэ.
 
 Reels, TikTok-д бэлэн 1080×1920 MP4 гаргана. GOAT Academy-гийн 14 эдитийн стилийн нэг.
