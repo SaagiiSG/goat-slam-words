@@ -1,0 +1,22 @@
+@font-face { font-family: "Science Gothic"; src: url("fonts/ScienceGothic%5BCTRS,slnt,wdth,wght%5D.ttf"); font-weight: 100 900; font-stretch: 50% 200%; }
+
+html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+#clip { display: block; width: 1080px; height: 1920px; }
+/* a card's solid background, or the 55% black veil that dims the footage to 45% */
+#bg { position: absolute; inset: 0; opacity: 0; }
+
+/* preview: Science Gothic 900, line-height .9, centred; the caps sit in the middle of each 0.9 em row, so the
+   block's centre is the words' centre: (540, 555), in the hero band y 270-840. --w is the width axis. */
+.word { position: absolute; left: 540px; top: 555px; opacity: 0; white-space: nowrap; text-align: center;
+  font: 900 200px/0.9 "Science Gothic", sans-serif; --w: 70; font-variation-settings: "wdth" var(--w), "wght" 900; }
+/* the outline: a stroke on both sides of the letter's edge, about v1's ring (1/30 of the size, 5 px at least);
+   the padding is the stroke's outer half, so the fit counts it and it stays inside the 840 px */
+.word.outline { -webkit-text-stroke-width: max(5px, 0.034em); padding: 0 max(2.5px, 0.017em); }
+
+/* preview: the stack's lines from (120, 288), left-aligned, line-height .92, 14 px gaps around 6 px rules */
+.stack { position: absolute; left: 120px; top: 288px; width: 840px; opacity: 0; }
+.stack .line { font: 900 150px/0.92 "Science Gothic", sans-serif; font-variation-settings: "wdth" 70, "wght" 900;
+  white-space: nowrap; opacity: 0; }
+.stack .line.outline { color: transparent; -webkit-text-stroke: max(4px, 0.027em) #fff; padding: 0 max(2px, 0.0135em); }
+.stack .rule { height: 6px; margin: 14px 0; transform-origin: left center; transform: scaleX(0); }
