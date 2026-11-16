@@ -7,12 +7,14 @@ description: Slam Words · Том үг. Turns a price, offer, spec or tip into g
 
 One to three giant words at a time fill the screen edge to edge and slam in (140% → 97% → 100%, then a short shake). Each card sits on a solid brand colour, on black, on white, or on the footage darkened to 45%. A word can start narrow and stretch wide, or start as an outline and fill in. A stack card lands 3–5 lines one per beat, with red rules drawing across between them, like a poster. Between cards the footage plays untouched. It is the only GOAT look where text, not footage, fills the screen.
 
-**Good for:** prices, offers, specs and tips for every business: "ӨНӨӨДӨР 30% ХЯМДРАЛ", a menu of services, a car's price and year, rooms and district, a coach's three tips.
+**Good for:** prices, offers, specs and tips for every business: "ӨНӨӨДӨР ИХ ХЯМДРАЛ", a menu of services, a car's price and year, rooms and district, a coach's three tips.
 **Not for:** the moment where the work itself is the proof (a finished nail set, a haircut reveal): the words cover and darken it. Say the offer in big words, then leave the last 1–2 s free so the result plays clean.
 
 Talk to the user in the language they write in (usually Mongolian). Keep messages short and plain; many users are not technical. `SKILL_DIR` means this skill's base directory (shown when the skill loads). Run commands from the user's project folder with absolute paths into `SKILL_DIR`. `goat` below means `node SKILL_DIR/scripts/goat.mjs`.
 
 ## 1. Setup check (first time on a machine)
+
+**Every new video, first:** run `claude plugin marketplace update goat-slam-words`, then `claude plugin update goat-slam-words@goat-slam-words`. If it installs a new version, tell the user a new version was installed and ask them to type `/reload-plugins` before you go on. If either command fails (offline, or installed from a zip), carry on and don't mention it.
 
 Run `node --version` (needs 22 or newer) and `ffmpeg -version`. If either is missing, show the install command and ask before installing (it is their computer):
 - Mac: `brew install node ffmpeg`
@@ -54,7 +56,7 @@ Write `plan.json` in the project folder (paths are relative to it):
   ],
   "texts": [
     {"role": "word", "text": "ӨНӨӨДӨР", "start": 0.0, "end": 1.2, "stretch": true},
-    {"role": "word", "text": "30%", "start": 1.2, "end": 2.4, "emphasis": true},
+    {"role": "word", "text": "ИХ", "start": 1.2, "end": 2.4, "emphasis": true},
     {"role": "word", "text": "ХЯМДРАЛ", "start": 2.4, "end": 3.6, "style": "outline"},
     {"role": "stack", "text": "ЗАСАЛТ\nБУДАГ\nЭМЧИЛГЭЭ", "start": 3.6, "end": 5.2},
     {"role": "word", "text": "ЦАГ\nЗАХИАЛ", "start": 5.2, "end": 6.0, "bg": "accent"}
@@ -74,11 +76,11 @@ Then run these in order. Each one says what to run first if a step is missing.
 ## 4. Write the words
 
 **texts:** one card shows at a time, from `start` to `end` (default: the next card's start, or the end of the video; a later card always ends the one before). Write words in capitals. Never invent a price, phone number, date or percentage.
-- `word`: a big word card, centred at (540, 555) in the top half. 1 or 2 rows: break the line yourself with `\n` (two short rows are bigger than one long one). **At most 12 characters a row** (spaces count), **9 on a stretch card.** A longer row, an empty row or a third row is refused with a message. The rows are sized together so the longer one fills the 840 px safe width, up to 460 px type for one row and 300 px for two, down to 56 px: "ЦАГ" comes out at about 360 px, "30%" 320, "БУДАГ" 220, "ӨНӨӨДӨР" 145, a full 12-character row 80–100 px; "ЦАГ\nЗАХИАЛ" at about 170. Even 12 of the widest letters (Ж Щ Ы Ю) fit at 56 px; only rare symbols such as ‰ can run past the edges. One row covers about y 390–720 at the largest size; two rows about y 315–795. On its first frame a word is 140% wide and can run off the screen's edges for that one frame: that is the slam. A card at `"start": 0` is already there, at rest, on the first frame. Options per card:
+- `word`: a big word card, centred at (540, 555) in the top half. 1 or 2 rows: break the line yourself with `\n` (two short rows are bigger than one long one). **At most 12 characters a row** (spaces count), **9 on a stretch card.** A longer row, an empty row or a third row is refused with a message. The rows are sized together so the longer one fills the 840 px safe width, up to 460 px type for one row and 300 px for two, down to 56 px: "ЦАГ" comes out at about 360 px, "БУДАГ" 220, "ӨНӨӨДӨР" 145, a full 12-character row 80–100 px; "ЦАГ\nЗАХИАЛ" at about 170. Even 12 of the widest letters (Ж Щ Ы Ю) fit at 56 px; only rare symbols such as ‰ can run past the edges. One row covers about y 390–720 at the largest size; two rows about y 315–795. On its first frame a word is 140% wide and can run off the screen's edges for that one frame: that is the slam. A card at `"start": 0` is already there, at rest, on the first frame. Options per card:
   - `bg`: `accent` (brand colour, black words; white words if the colour is dark), `black` (brand-colour words; white if the colour is dark), `white` (black words), `footage` (the footage darkened to 45%, white words). If you leave it out, cards take `accent`, `black`, `footage` in turn. The words sit over the top half of the screen, so on a `footage` card pick a shot with no face there (hands, the work, a room, the back of a head); over a talking head, use a solid colour.
   - `style`: `fill` (default) or `outline` (outline letters that fill in two-thirds of the way through the card).
   - `emphasis`: `true` on the one or two cards that matter most (the price, the offer) gives them a louder thud.
-  - `stretch`: `true` holds the word narrow for one beat, then widens it over the next beat, its height held. It is sized for its widest moment, so a stretch word comes out smaller: it reads best on a short word ("30%" about 240 px, "ШИНЭ" 175, "ӨНӨӨДӨР" only 105). It needs at least 2 beats; give it 3.
+  - `stretch`: `true` holds the word narrow for one beat, then widens it over the next beat, its height held. It is sized for its widest moment, so a stretch word comes out smaller: it reads best on a short word ("ШИНЭ" about 175 px, "ӨНӨӨДӨР" only 105). It needs at least 2 beats; give it 3.
 - `stack`: 3–5 lines (split with `\n`) on black, **at most 16 characters a line**, from the top-left of the safe area (120, 288) down. One line lands per beat: white, then outline, then the second brand colour, in turn, with a rule drawing across under each in 4 frames. Each line fills 840 px, up to 240 px type (180 px with 5 lines), down to 42 px. Give it at least one beat per line; one more reads better.
 
 **look** options:
@@ -132,6 +134,7 @@ Tell the user where the file is (`output/slam-words.mp4`) and that it is ready t
 
 ## Rules
 
+- Every word and graphic on screen comes from what this video says or shows, or from what the user gave you. The examples in this file are only examples: never put them in a video. If the user hasn't given the words, ask.
 - Never invent numbers. Prices, percentages, dates and phone numbers come from the user.
 - Words stay inside the area no app buttons cover. Don't move them.
 - Never more than 3 changes of the whole screen a second. The look enforces it (see "Flashes" above); don't try to get round it.
