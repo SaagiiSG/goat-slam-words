@@ -1,6 +1,6 @@
 {
   "name": "goat-slam-words",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Slam Words · Том үг: fills the screen with one to three giant Mongolian words at a time that slam in, stretch wide or fill in from an outline, over a solid brand colour, black, white or dimmed footage, plus a poster-style stack with red rules, built on HyperFrames. Works with no footage. Renders a 1080x1920 MP4 for Reels/TikTok.",
   "author": {
     "name": "GOAT Academy"
